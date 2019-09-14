@@ -21,7 +21,7 @@
     "dependencies": {
         "@arkecosystem/core-event-emitter": "^2.5.24",
         "@arkecosystem/core-interfaces": "^2.5.24",
-        "@arkecosystem/crypto": "^2.5.24",
+        "@arkecosystem/crypto": "git+https://git@github.com/qredit/crypto.git",
         "bs58check": "^2.1.2"
     },
     "engines": {
