@@ -7,6 +7,121 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.7.24] - 2020-12-14
+
+### Changed
+
+-   Match entity schema name with delegate username (4e85a744, @air1one)
+
+### Fixed
+
+-   Reject long form signature lengths (8f8976de, @alessiodf)
+-   Validate payload call id for all requests (4565eba2, @alessiodf)
+-   Check client-side graceful disconnection payload (c6d74215, @alessiodf)
+-   Ensure asset recipientId and amount are strings (29eaf104, @alessiodf)
+-   Validate incoming message json (ae8dcd73, @alessiodf)
+-   Count props in p2p.peer.postTransactions payload (021d18aa, @alessiodf)
+-   Reset maxPayload on ws message (f1bf1956, @air1one)
+-   Reduce getBlocksTimeout to 30 sec (93701759, @air1one)
+-   Limit peers returned by getPeers (4c79c455, @air1one)
+-   TrustProxy option based on env (fff3ecb0, @air1one)
+
+## [2.7.13] - 2020-11-19
+
+### Changed
+
+-   Custom validation for getCommonBlocks (2b393635, @alessiodf)
+-   Add listeners on 'connecting' event (b5625926, @alessiodf)
+-   Add index on blocks.generator_public_key, blocks.height (6fb4ab90, @alessiodf)
+
+### Fixed
+
+-   Always broadcast last block (c291166f, @air1one)
+-   Terminate and ban on error (eecc40ce, @air1one)
+-   Parse without base64ToBinaryReplacer on error (8e41f069, @alessiodf)
+
+## [2.7.7] - 2020-10-22
+
+### Fixed
+
+-   Strict greater than (8006a8da, @air1one)
+
+## [2.7.6] - 2020-10-22
+
+### Changed
+
+-   Enable trustProxy option (850ade02, @air1one)
+-   Return [] if asked higher blocks than current (312899c9, @air1one)
+
+### Fixed
+
+-   Check that message is a string (5e1c5a33, @air1one)
+-   Ban if not authorized on internal (dd96ee49, @air1one)
+-   Htlc lock recipientId is required (380fb5b6, @air1one)
+
+## [2.7.1] - 2020-09-28
+
+### Fixed
+
+-   Destroy connection after terminate (#4065) (a853d63f, @air1one)
+
+## [2.7.0] - 2020-09-23
+
+### Added
+
+-   AIP36 (#3836) (36c1ca76, @air1one)
+-   AIP36 delegate entity (#3877) (9f2eb629, @air1one)
+
+### Fixed
+
+-   Add missing return type to this.queue (#3817) (511e5755, @deanpress)
+-   Fix entity register bootstrap method (#3850) (bd5b1ad0, @air1one)
+-   Remove duplicates entity resigned/isResigned (#3858) (90bf42de, @air1one)
+-   Entity name only unique by type (#4008) (3b12c703, @air1one)
+-   Ignore random type errors thrown by lowdb on build (#4017) (785680c0, @deanpress)
+-   Delegate check only needed on entity register (#4024) (64b63b54, @air1one)
+-   Rate limit and peer broadcast (#4054) (6988cdd4, @air1one)
+
+### Changed
+
+-   Add AIP36 milestone for devnet (#3845) (1da58ebb, @air1one)
+-   Remove obsolete magistrate endpoints (AIP36) (#3847) (219a9408, @air1one)
+-   Accept peers in the 2.7 range (#3848) (aab40895, @faustbrian)
+-   Remove bridgechain from AIP36 entities (#3937) (085ab675, @air1one)
+-   Add devnet exception (#3967) (78c49b4a, @air1one)
+-   Throw more specific multi-signature exceptions (#3976) (48e67e51, @faustbrian)
+-   More flexible entity types / sub-types + fees update (#3986) (06261f99, @air1one)
+-   Activate all entity types + re-allocate entity type enum (#4020) (649aeace, @air1one)
+-   Custom entity fees for register/update/resign (#4029) (ed835c29, @air1one)
+-   Add devnet exception (#4031) (5da4f4df, @air1one)
+-   AIP36 milestone for mainnet (#4053) (ec8cbb94, @air1one)
+
+## [2.6.57] - 2020-09-17
+
+### Fixed
+
+-   Only verify peer blocks < our height (c968e69d, @air1one)
+-   Stricter multipayment tx check (620027df, @air1one)
+-   Initialize maxPayload on connection create (3ac3eb17, @air1one)
+
+## [2.6.54] - 2020-09-09
+
+### Changed
+
+-   Verify peer claimed state (24a8b044, @air1one)
+
+### Fixed
+
+-   Use head from utils (da13465e, @air1one)
+
+## [2.6.52] - 2020-08-11
+
+### Fixed
+
+-   Discard zero-padded R/S (#3950) (9f197fa1, @air1one)
+-   Check sig length value vs r/s length (#3950) (c2d3f2e5, @air1one)
+-   Find by address / public key before username (#3950) (ddd19cc2, @air1one)
+
 ## [2.6.49] - 2020-07-22
 
 ### Fixed
@@ -1007,6 +1122,10 @@ Closed security vulnerabilities:
 -   Initial Release
 
 [unreleased]: https://github.com/ARKEcosystem/core/compare/master...develop
+[2.7.0]: https://github.com/ARKEcosystem/core/compare/2.6.57...2.7.0
+[2.6.57]: https://github.com/ARKEcosystem/core/compare/2.6.54...2.6.57
+[2.6.54]: https://github.com/ARKEcosystem/core/compare/2.6.52...2.6.54
+[2.6.52]: https://github.com/ARKEcosystem/core/compare/2.6.49...2.6.52
 [2.6.49]: https://github.com/ARKEcosystem/core/compare/2.6.42...2.6.49
 [2.6.42]: https://github.com/ARKEcosystem/core/compare/2.6.39...2.6.42
 [2.6.39]: https://github.com/ARKEcosystem/core/compare/2.6.38...2.6.39
@@ -1571,11 +1690,33 @@ Closed security vulnerabilities:
 [#3695]: https://github.com/ARKEcosystem/core/pull/3695
 [#3746]: https://github.com/ARKEcosystem/core/pull/3746
 [#3806]: https://github.com/ARKEcosystem/core/pull/3806
+[#3817]: https://github.com/ARKEcosystem/core/pull/3817
 [#3818]: https://github.com/ARKEcosystem/core/pull/3818
 [#3823]: https://github.com/ARKEcosystem/core/pull/3823
 [#3830]: https://github.com/ARKEcosystem/core/pull/3830
+[#3836]: https://github.com/ARKEcosystem/core/pull/3836
+[#3845]: https://github.com/ARKEcosystem/core/pull/3845
+[#3847]: https://github.com/ARKEcosystem/core/pull/3847
+[#3848]: https://github.com/ARKEcosystem/core/pull/3848
+[#3850]: https://github.com/ARKEcosystem/core/pull/3850
+[#3858]: https://github.com/ARKEcosystem/core/pull/3858
+[#3877]: https://github.com/ARKEcosystem/core/pull/3877
 [#3904]: https://github.com/ARKEcosystem/core/pull/3904
 [#3905]: https://github.com/ARKEcosystem/core/pull/3905
+[#3937]: https://github.com/ARKEcosystem/core/pull/3937
+[#3950]: https://github.com/ARKEcosystem/core/pull/3950
+[#3967]: https://github.com/ARKEcosystem/core/pull/3967
+[#3976]: https://github.com/ARKEcosystem/core/pull/3976
+[#3986]: https://github.com/ARKEcosystem/core/pull/3986
+[#4008]: https://github.com/ARKEcosystem/core/pull/4008
+[#4017]: https://github.com/ARKEcosystem/core/pull/4017
+[#4020]: https://github.com/ARKEcosystem/core/pull/4020
+[#4024]: https://github.com/ARKEcosystem/core/pull/4024
+[#4029]: https://github.com/ARKEcosystem/core/pull/4029
+[#4031]: https://github.com/ARKEcosystem/core/pull/4031
+[#4053]: https://github.com/ARKEcosystem/core/pull/4053
+[#4054]: https://github.com/ARKEcosystem/core/pull/4054
+[#4065]: https://github.com/ARKEcosystem/core/pull/4065
 [032caa1b990e91937e4bc1561bc1aeaeca9e37d]: https://github.com/ARKEcosystem/core/commit/032caa1b990e91937e4bc1561bc1aeaeca9e37d9
 [1209a36366c8fd3ba31fab2463011b7ce1a7d84]: https://github.com/ARKEcosystem/core/commit/1209a36366c8fd3ba31fab2463011b7ce1a7d844
 [34749bf84bcec3fecd0098c0d42f52deb1f6ba4]: https://github.com/ARKEcosystem/core/commit/34749bf84bcec3fecd0098c0d42f52deb1f6ba4a
